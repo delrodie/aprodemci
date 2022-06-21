@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List{% endblock %}
+
+{% block body %}
+	<div class="container mt-3 mb-4">
+		<div class="row">
+			<div class="col-12">
+				<table class="liste" style="width: 100%;">
+					<thead class="mb-3">
+						<th>#</th>
+						<th>Identité</th>
+						<th>Statuts</th>
+						<th class="d-none d-lg-block">Actions</th>
+					</thead>
+					<tbody>
+					{% for i in 1..10 %}
+						<tr class="row-list mt-5">
+							<td class="text-center">{{ i }}</td>
+							<td>
+								<div class="row mt-5"	>
+									<div class="col-4 profil">
+										<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+									</div>
+									<div class="col-8">
+										<div class="row">
+											<div class="col-12 mb-1"><h4>Amoikon delrodie <span class="pseudo">(pseudonyme)</span></h4></div>
+											<div class="col-12">
+												<ul class="list">
+													<li class="entreprise"><i class="fa fa-hotel"></i> Dream Maker</li>
+													<li class="email"><a href="#"><i class="fa-solid fa-envelope"></i> Email</a></li>
+													<li class="telephone"><a href="#"><i class="fa-solid fa-phone"></i> Telephone</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td><span class="badge text-bg-success">Validé</span></td>
+							<td class="d-none d-lg-block">
+								<a href="#"><i class="fa fa-eye"></i></a> &nbsp; | &nbsp;
+								<a href="#"><i class="fa fa-edit"></i></a> &nbsp;
+
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

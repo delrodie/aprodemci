@@ -1,0 +1,23 @@
+{
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/dopify.css": "/build/dopify.css",
+  "build/dopify.js": "/build/dopify.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_fu-23ca09.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_fu-23ca09.js",
+  "build/images/baniere.jpg": "/build/images/baniere.jpg",
+  "build/images/favico.png": "/build/images/favico.png",
+  "build/dropify/js/dropify.min.js": "/build/dropify/js/dropify.min.js",
+  "build/dropify/css/dropify.min.css": "/build/dropify/css/dropify.min.css",
+  "build/tags/bootstrap-tagsinput.min.js": "/build/tags/bootstrap-tagsinput.min.js",
+  "build/dropify/fonts/dropify.eot": "/build/dropify/fonts/dropify.eot",
+  "build/fonts/dropify.eot": "/build/fonts/dropify.533b98a9.eot",
+  "build/dropify/fonts/dropify.ttf": "/build/dropify/fonts/dropify.ttf",
+  "build/fonts/dropify.ttf": "/build/fonts/dropify.fa3ea434.ttf",
+  "build/dropify/fonts/dropify.woff": "/build/dropify/fonts/dropify.woff",
+  "build/fonts/dropify.woff": "/build/fonts/dropify.26224e38.woff",
+  "build/dropify/fonts/dropify.svg": "/build/dropify/fonts/dropify.svg",
+  "build/images/dropify.svg": "/build/images/dropify.86d35fae.svg",
+  "build/tags/bootstrap-tagsinput.css": "/build/tags/bootstrap-tagsinput.css",
+  "build/dropify/js/upload-init.js": "/build/dropify/js/upload-init.js"
+}

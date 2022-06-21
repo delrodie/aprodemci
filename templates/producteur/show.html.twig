@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Producteur{% endblock %}
+
+{% block body %}
+    <h1>Informations Producteur</h1>
+
+    <div class="row mt-5">
+        <div class="col-md-6 img-profile text-center">
+            {% if producteur.media %}
+                <img src="{{ absolute_url(asset('upload/producteur/'~ producteur.media)) }}" alt="{{ producteur.nom }} {{ producteur.prenoms }}" class="img-fluid">
+            {% else %}
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-4"><label for="">Matricule </label></div>
+                <div class="col-8 donnee matricule">{{ producteur.matricule }}</div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4"><label for="">Nom </label></div>
+                <div class="col-8 donnee">{{ producteur.nom }}</div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4"><label for="">Prenoms</label></div>
+                <div class="col-8 donnee">{{ producteur.prenoms }}</div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4"><label for="">Pseudonyme</label></div>
+                <div class="col-8 donnee">{{ producteur.pseudonyme }}</div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4"><label for="">Entreprise</label></div>
+                <div class="col-8 donnee">{{ producteur.entreprise }}</div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4"><label for="">Email</label></div>
+                <div class="col-8 donnee">{{ producteur.email }}</div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4"><label for="">Telephone</label></div>
+                <div class="col-8 donnee">{{ producteur.telephone }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6"><label for="">Artistes produits : </label> <span class="donnee">{{ producteur.artistes}}</span></div>
+        <div class="col-md-6"><label for="">Albums produits</label> <span class="donnee">{{ producteur.albums }}</span></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12"><label for="">Explication </label></div>
+        <div class="col-12 donnee">{{ producteur.explication|raw }}</div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col-6 d-grid gap-2"><a href="#" class="btn btn-outline-secondary btn-lg">Retour</a></div>
+        <div class="col-6 d-grid gap-2"><a href="{{ path('app_producteur_edit', {'matricule': producteur.matricule}) }}" class="btn btn-primary btn-lg">Modifier</a></div>
+    </div>
+{% endblock %}

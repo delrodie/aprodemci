@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enregistrement{% endblock %}
+
+{% block body %}
+    <h1>Formulaire de recensement</h1>
+
+    {{ include('producteur/_form.html.twig') }}
+
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/tags/bootstrap-tagsinput.css') }}">
+    {{ parent() }}
+    {{ encore_entry_link_tags('dopify') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/tags/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('build/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('build/dropify/js/upload-init.js') }}"></script>
+    <script type='text/javascript'>
+
+        $("input[data-preview]").change(function() {
+            var $input = $(this);
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(this.files[0]);
+            fileReader.onload = function(fileEvent) {
+                $($input.data('preview')).attr('src', fileEvent.target.result);
+            };
+        });
+
+        $('.dropify-fr').dropify({
+            messages: {
+                'default': 'Glissez-déposez un fichier ici ou cliquez',
+                'replace': 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                'remove':  'Supprimer',
+                'error':   'Désolé, le fichier trop volumineux'
+            }
+        });
+    </script>
+    <script>
+        $(".tags").val()
+    </script>
+{% endblock %}

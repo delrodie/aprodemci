@@ -1,0 +1,39 @@
+{{ form_start(form) }}
+    <div class="row form-group">
+        <div class="col-md-6 mt-3">
+            {% if producteur.media %}
+                <div class="row">
+                    <div class="col-6">{{ form_row(form.media) }}</div>
+                    <div class="col-6 mt-3">
+                        <img src="{{ absolute_url(asset('upload/producteur/'~ producteur.media)) }}" alt="{{ producteur.nom }} {{ producteur.prenoms }}" class="img-fluid">
+                    </div>
+                </div>
+            {% else %}
+                {{ form_row(form.media) }}
+            {% endif %}
+        </div>
+    <div class="col-md-6 mt-3">
+        <div class="row">
+            <div class="col-12 mt-3">{{ form_row(form.nom) }}</div>
+            <div class="col-12 mt-3">{{ form_row(form.prenoms) }}</div>
+            <div class="col-12 mt-3">{{ form_row(form.pseudonyme) }}</div>
+        </div>
+    </div>
+    <div class="col-md-6 mt-3">{{ form_row(form.entreprise) }}</div>
+    <div class="col-md-6 mt-3">{{ form_row(form.email) }}</div>
+    <div class="col-md-6 mt-3">{{ form_row(form.telephone) }}</div>
+    <div class="col-md-6 mt-3">{{ form_row(form.artistes) }}</div>
+    <div class="col-md-6 mt-3">{{ form_row(form.albums) }}</div>
+    <div class="col-md-12 mt-3">{{ form_row(form.explication) }}</div>
+    <div class="col-md-12 mt-5">
+        <div class="form-check">
+            {{ form_widget(form.accord) }}
+            {{ form_label(form.accord) }}
+        </div>
+    </div>
+        {{ form_widget(form) }}
+    <div class="col-md-12 d-grid gap-2 mt-5 mb-5">
+        <button class="btn btn-primary btn-lg">{{ button_label|default('Envoyer') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}
