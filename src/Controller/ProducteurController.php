@@ -6,6 +6,7 @@ use App\Entity\Producteur;
 use App\Form\ProducteurType;
 use App\Repository\ProducteurRepository;
 use App\Utilities\Utility;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +26,16 @@ class ProducteurController extends AbstractController
 	}
 	
     #[Route('/', name: 'app_producteur_index', methods: ['GET'])]
-    public function index(ProducteurRepository $producteurRepository): Response
+    public function index(Request $request, ProducteurRepository $producteurRepository, PaginatorInterface $paginator): Response
     {
+		$donne = $producteurRepository->findAll();
+		$producteurs = $paginator->paginate(
+			$donne,
+			$request->query->getInt('page', 1),
+			5
+		);
         return $this->render('producteur/index.html.twig', [
-            'producteurs' => $producteurRepository->findAll(),
+            'producteurs' => $producteurs,
         ]);
     }
 

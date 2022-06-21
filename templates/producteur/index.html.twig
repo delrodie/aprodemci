@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Producteur index{% endblock %}
+{% block title %}Liste des producteurs{% endblock %}
 
 {% block body %}
     <h1>Liste des producteurs</h1>
@@ -54,6 +54,9 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                <div class="text-center mt-5">
+                    {{ knp_pagination_render(producteurs) }}
+                </div>
             </div>
         </div>
     </div>
