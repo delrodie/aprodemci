@@ -26,20 +26,21 @@ class ProducteurType extends AbstractType
             ->add('email', EmailType::class,['attr'=>['class'=>'form-control']])
             ->add('telephone', TelType::class,['attr'=>['class'=>'form-control']])
             ->add('artistes', TextType::class,[
-				'attr'=>['class'=>'form-control tags', 'placeholder'=>"Noms des artistes", 'data-role'=>"tagsinput"],
-	            'help' => 'Séparez par des virgules les noms des artistes produits'
+				'attr'=>['class'=>'form-control tags', 'placeholder'=>"Noms des artistes - albums", 'data-role'=>"tagsinput"],
+	            'help' => 'Séparez par des virgules les noms des artistes et albums produits',
+	            'label' => 'Artistes et albums produits'
             ])
-            ->add('albums', TextType::class,[
+	        /*->add('albums', TextType::class,[
 				'attr'=>['class'=>'form-control', 'placeholder' => "Titres des albums", 'data-role'=>"tagsinput"],
-	            'help' => 'Séparez par des virgules les titres des albums produits'
-            ])
-            ->add('explication', TextareaType::class,[
+				'help' => 'Séparez par des virgules les titres des albums produits'
+			])
+			/*->add('explication', TexteaType::class,[
 				'attr'=>['class'=>'form-control', 'rows'=>5],
-	            'label' => "Pourquoi voulez-vous intégrer l'APRODEMCI? "
-            ])
+				'label' => "Pourquoi voulez-vous intégrer l'APRODEMCI? "
+			])*/
             ->add('accord', CheckboxType::class,[
 				'attr'=>['class'=>'form-check-input'],
-	            'label'=>"En cochant cette case vous acceptez de payer la somme de 10.000 FCFA"
+	            'label'=>"En cochant cette case vous faites votre demande d'adhésion à l'APRODEMCI"
             ])
             //->add('statut')
             ->add('media', FileType::class,[

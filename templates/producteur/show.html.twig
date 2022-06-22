@@ -45,13 +45,9 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-6"><label for="">Artistes produits : </label> <span class="donnee">{{ producteur.artistes}}</span></div>
-        <div class="col-md-6"><label for="">Albums produits</label> <span class="donnee">{{ producteur.albums }}</span></div>
+        <div class="col-md-12"><label for="">Artistes et albums produits : </label> <span class="donnee">{{ producteur.artistes}}</span></div>
     </div>
-    <div class="row mt-3">
-        <div class="col-12"><label for="">Explication </label></div>
-        <div class="col-12 donnee">{{ producteur.explication|raw }}</div>
-    </div>
+
     <div class="row mt-5 mb-5">
         <div class="col-6 d-grid gap-2"><a href="#" class="btn btn-outline-secondary btn-lg">Retour</a></div>
         <div class="col-6 d-grid gap-2"><a href="{{ path('app_producteur_edit', {'matricule': producteur.matricule}) }}" class="btn btn-primary btn-lg">Modifier</a></div>
