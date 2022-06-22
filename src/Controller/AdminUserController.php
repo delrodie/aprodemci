@@ -8,11 +8,19 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/user')]
 class AdminUserController extends AbstractController
 {
+	private $passwordHasher;
+	
+	public function __construct(UserPasswordHasherInterface $passwordHasher)
+	{
+		$this->passwordHasher = $passwordHasher;
+	}
+	
     #[Route('/', name: 'app_admin_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -29,7 +37,11 @@ class AdminUserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+			$user->setRoles(['ROLE_ADMIN']);
+			$user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
             $userRepository->add($user, true);
+			
+			$this->addFlash('success', "L(utilsateur a bient été ajouté");
 
             return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -55,6 +67,8 @@ class AdminUserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+	        //dd($form->get('password')->getData());
+	        $user->setPassword($this->passwordHasher->hashPassword($user, $form->get('password')->getData()));
             $userRepository->add($user, true);
 
             return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);

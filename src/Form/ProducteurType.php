@@ -21,7 +21,10 @@ class ProducteurType extends AbstractType
         $builder
             ->add('nom', TextType::class,['attr'=>['class'=>'form-control']])
             ->add('prenoms', TextType::class,['attr'=>['class'=>'form-control']])
-            ->add('pseudonyme', TextType::class,['attr'=>['class'=>'form-control']])
+            ->add('pseudonyme', TextType::class,[
+				'attr'=>['class'=>'form-control'],
+	            'required' => false
+            ])
             ->add('entreprise', TextType::class,['attr'=>['class'=>'form-control']])
             ->add('email', EmailType::class,['attr'=>['class'=>'form-control']])
             ->add('telephone', TelType::class,['attr'=>['class'=>'form-control']])

@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Enregistrement des utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+    <h1>Enregistrement des utilisateurs</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
     {{ include('admin_user/_form.html.twig') }}
 
-    <a href="{{ path('app_admin_user_index') }}">back to list</a>
 {% endblock %}
