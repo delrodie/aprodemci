@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
@@ -21,11 +22,13 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
 	private $passwordHasher;
+	private $security;
 	
-	public function __construct(ManagerRegistry $registry, UserPasswordHasherInterface $passwordHasher)
+	public function __construct(ManagerRegistry $registry, UserPasswordHasherInterface $passwordHasher, Security $security)
     {
         parent::__construct($registry, User::class);
 	    $this->passwordHasher = $passwordHasher;
+	    $this->security = $security;
     }
 
     public function add(User $entity, bool $flush = false): void
@@ -64,7 +67,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 	 * @param UserPasswordHasherInterface $passwordHasher
 	 * @return bool
 	 */
-	public function connexion(): bool
+	public function addUser(): bool
 	{
 		$userVerif = $this->findOneBy(['email'=>'delrodieamoikon@gmail.com']);
 		if (!$userVerif){
@@ -79,6 +82,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * @return bool
+	 */
+	public function connexion(): bool
+	{
+		$user = $this->findOneBy(['email' => $this->security->getUser()->getUserIdentifier()]);
+		$nombre_connexion = $user->getConnexion();
+		$user->setConnexion($nombre_connexion + 1);
+		$user->setLastConnectedAt(new \DateTime());
+		
+		$this->add($user, true);
+		
+		return true;
 	}
 
 //    /**

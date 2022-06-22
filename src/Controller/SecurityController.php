@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
         // }
 
 	    
-	    if ($userRepository->connexion()) $this->addFlash('success', "Utilisateur ajouté avec succès!");
+	    if ($userRepository->addUser()) $this->addFlash('success', "Utilisateur ajouté avec succès!");
 		
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
