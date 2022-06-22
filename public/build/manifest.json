@@ -10,6 +10,7 @@
   "build/dropify/js/dropify.min.js": "/build/dropify/js/dropify.min.js",
   "build/dropify/css/dropify.min.css": "/build/dropify/css/dropify.min.css",
   "build/tags/bootstrap-tagsinput.min.js": "/build/tags/bootstrap-tagsinput.min.js",
+  "build/images/logo.png": "/build/images/logo.png",
   "build/dropify/fonts/dropify.eot": "/build/dropify/fonts/dropify.eot",
   "build/fonts/dropify.eot": "/build/fonts/dropify.533b98a9.eot",
   "build/dropify/fonts/dropify.ttf": "/build/dropify/fonts/dropify.ttf",
@@ -19,7 +20,5 @@
   "build/dropify/fonts/dropify.svg": "/build/dropify/fonts/dropify.svg",
   "build/images/dropify.svg": "/build/images/dropify.86d35fae.svg",
   "build/tags/bootstrap-tagsinput.css": "/build/tags/bootstrap-tagsinput.css",
-  "build/dropify/js/upload-init.js": "/build/dropify/js/upload-init.js",
-  "build/images/logo.png.crdownload": "/build/images/logo.png.crdownload",
-  "build/images/logo.png": "/build/images/logo.png"
+  "build/dropify/js/upload-init.js": "/build/dropify/js/upload-init.js"
 }
