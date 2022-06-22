@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau des producteurs{% endblock %}
+
+{% block body %}
+    <div class="row mt-5">
+        <div class="col-12 justify-end">
+            <div class="dropdown">
+                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="{{ path('app_admin_producteur_liste') }}">Liste des producteurs </a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_admin_producteur') }}">Exporter la liste</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h1>Tableau des producteurs</h1>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col" data-aos="zoom-out" data-aos-easing="linear" data-aos-duration="3000">
+            <table id="producteur" class="table table-striped" style="width: 100%">
+                <thead>
+                <tr class="text-center">
+                    <th class="text-center text-uppercase">#</th>
+                    <th class="text-center text-uppercase">Matricules</th>
+                    <th class="text-center text-uppercase">Entreprises</th>
+                    <th class="text-center text-uppercase">Nom & prenoms</th>
+                    <th class="text-center text-uppercase">Pseudonymes</th>
+                    <th class="text-center text-uppercase">Email</th>
+                    <th class="text-center text-uppercase">Telephone</th>
+                    <th class="text-center text-uppercase">Artistes</th>
+                </tr>
+                </thead>
+                {% for producteur in producteurs %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td class="text-center">{{ producteur.matricule}}</td>
+                        <td class="text-center">{{ producteur.entreprise}}</td>
+                        <td>{{ producteur.nom|upper }} {{ producteur.prenoms }}</td>
+                        <td class="text-left">{{ producteur.pseudonyme }}</td>
+                        <td><a href="mailto:{{ producteur.email }}">{{ producteur.email }}</a></td>
+                        <td><a href="tel:{{ producteur.telephone }}">{{ producteur.telephone }}</a></td>
+                        <td class="text-left">{{ producteur.artistes }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#producteur').DataTable( {
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'colvis' ],
+                responsive: true
+            } );
+
+            table.buttons().container()
+                    .appendTo( '#producteur_wrapper .col-md-6:eq(0)' );
+        } );
+    </script>
+    <script>
+        AOS.init();
+    </script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des producteurs{% endblock %}
+
+{% block body %}
+	<div class="row mt-5">
+		<div class="col-12 justify-end">
+			<div class="dropdown">
+				<a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+					Menu
+				</a>
+
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="{{ path('app_admin_producteur_liste') }}">Liste des producteurs </a></li>
+					<li><a class="dropdown-item" href="{{ path('app_admin_producteur') }}">Exporter la liste</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<h1 class="mt-5">Liste des producteurs</h1>
+
+	<div class="container mt-3 mb-4">
+		<div class="row">
+			<div class="col-12 table-responsive-sm">
+				<table class="table-hover liste" style="width: 100%;">
+					<thead class="mb-3">
+					<th>#</th>
+					<th>Identité</th>
+					<th>Statuts</th>
+					<th class="">Actions</th>
+					</thead>
+					<tbody>
+					{% for producteur in producteurs %}
+						<tr class="row-list mt-5">
+							<td class="text-center">{{ loop.index }}</td>
+							<td>
+								<div class="row mt-5"	>
+									<div class="col-4 profil">
+										{% if producteur.media %}
+											<img src="{{ absolute_url(asset('upload/producteur/'~ producteur.media)) }}" alt="{{ producteur.nom }} {{ producteur.prenoms }}">
+										{% else %}
+											<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+										{% endif %}
+									</div>
+									<div class="col-8">
+										<div class="row">
+											<div class="col-12 mb-1"><h4>{{ producteur.nom}} {{ producteur.prenoms }}<span class="pseudo">({{ producteur.pseudonyme }})</span> - <span class="matricule">{{ producteur.matricule }}</span></h4></div>
+											<div class="col-12">
+												<ul class="list">
+													<li class="entreprise"><i class="fa fa-hotel"></i> {{ producteur.entreprise }}</li>
+													<li class="email"><a href="mailto:{{ producteur.email }}"><i class="fa-solid fa-envelope"></i> {{ producteur.email }}</a></li>
+													<li class="telephone"><a href="tel:{{ producteur.telephone }}"><i class="fa-solid fa-phone"></i> {{ producteur.telephone }}</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td>
+								{{ producteur.statut ? '<span class="badge text-bg-success">Validé</span>' : '<span class="badge text-bg-danger">Non validé</span>' }}
+							</td>
+							<td class=" text-center">
+								<a href="{{ path('app_producteur_show', {'matricule': producteur.matricule}) }}"><i class="fa fa-eye"></i></a> &nbsp; &nbsp;
+
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+				<div class="text-center mt-5">
+					{{ knp_pagination_render(producteurs) }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

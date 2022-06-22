@@ -49,13 +49,6 @@
     </div>
 
     <div class="row mt-5 mb-5">
-        {% if is_granted('ROLE_USER') %}
-            <div class="col-4 d-grid gap-2"><a href="{{ path('app_admin_producteur_liste') }}" class="btn btn-outline-secondary btn-lg">Retour</a></div>
-            <div class="col-4 d-grid gap-2"><a href="{{ path('app_producteur_edit', {'matricule': producteur.matricule}) }}" class="btn btn-primary btn-lg">Modifier</a></div>
-            <div class="col-4 d-grid gap-2"><a href="{{ path('app_admin_producteur_validation', {'matricule': producteur.matricule}) }}" class="btn btn-success btn-lg">Valider</a></div>
-        {% else %}
-            <div class="col-6 offset-3 d-grid gap-2"><a href="{{ path('app_producteur_edit', {'matricule': producteur.matricule}) }}" class="btn btn-primary btn-lg">Modifier</a></div>
-        {% endif %}
-
+        <div class="col-6 offset-3 d-grid gap-2"><a href="{{ path('app_admin_producteur_liste') }}" class="btn btn-outline-secondary btn-lg">Retour</a></div>
     </div>
 {% endblock %}
